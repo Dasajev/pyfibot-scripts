@@ -11,7 +11,6 @@ baseurl = 'http://www.noobmeter.com/player/%s/%s'
 
 
 def command_wot(bot, user, channel, args):
-    """Get the player info"""
     result = getinfo(bot, args)
 
     return bot.say(channel, result.encode("UTF-8"))
@@ -19,13 +18,15 @@ def command_wot(bot, user, channel, args):
 def get_data_for_row(row):
     cells = row.findChildren('td');
     if len(cells) >= 2:
-        if cells[1].string is not None:
+        if cells[1].string is None:
+            for string in cells[1].strings:
+                return string
+        else:
             return cells[1].string
 
     return None
 
 def getinfo(bot, player):
-    """Parse the package status page"""
     url = baseurl % (server, player)
     r = bot.get_url(url)
     bs = BeautifulSoup(r.content)
@@ -76,6 +77,5 @@ def getinfo(bot, player):
     wn7 = get_data_for_row(rows[4])
     res.append(non_decimal.sub("", wn7.strip()))
     
-
     str = "".join(res)
     return str
