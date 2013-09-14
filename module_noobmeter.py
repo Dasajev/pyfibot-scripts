@@ -36,6 +36,8 @@ def getinfo(bot, player):
     res = []
 
     table = bs.find("table", {'class': "tablesorter"})
+    if not table:
+        return "Player not found"
     rows = list()
     for row in table.findAll("tr"):
         rows.append(row)
