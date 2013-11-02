@@ -44,15 +44,15 @@ def getinfo(bot, player):
 
     res.append(player)
     res.append(", Games: ")
-    games = get_data_for_row(rows[6])
+    games = get_data_for_row(rows[5])
     res.append(games.strip())
 
     res.append(" - ")
 
-    winp_string = get_data_for_row(rows[7])
+    winp_string = get_data_for_row(rows[6])
     non_decimal = re.compile(r'[^\d.]+')
-    winp = float(non_decimal.sub('', winp_string))/100.0    
-    games_number = int(non_decimal.sub('', games))
+    winp = float(non_decimal.sub('', winp_string))/100.0
+    games_number = float(non_decimal.sub('', games))
     wins = int(games_number*winp)
     win_string = "Wins: %d (%s)" % (wins, winp_string.strip())
     res.append(win_string)
@@ -60,7 +60,7 @@ def getinfo(bot, player):
     res.append(" - ")
 
     res.append("K:D: ")
-    kd = get_data_for_row(rows[15])
+    kd = get_data_for_row(rows[14])
     res.append(kd.strip())
 
     #Missing: Destroyed, Hit%
@@ -68,7 +68,7 @@ def getinfo(bot, player):
     res.append(" - ")
 
     res.append("AvgXp: ")
-    avgexp = get_data_for_row(rows[9])
+    avgexp = get_data_for_row(rows[8])
     res.append(avgexp.strip())
 
     res.append(", Eff: ")
@@ -76,7 +76,7 @@ def getinfo(bot, player):
     res.append(non_decimal.sub("", eff.strip()))
 
     res.append(", WN7: ")
-    wn7 = get_data_for_row(rows[4])
+    wn7 = get_data_for_row(rows[3])
     res.append(non_decimal.sub("", wn7.strip()))
     
     str = "".join(res)
