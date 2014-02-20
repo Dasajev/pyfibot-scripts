@@ -37,7 +37,7 @@ def getinfo(bot, player):
 
     table = bs.find("table", {'class': "tablesorter"})
     if not table:
-        return "Player not found"
+        return "Opettele kirjottamaan nobo"
     rows = list()
     for row in table.findAll("tr"):
         rows.append(row)
@@ -75,9 +75,9 @@ def getinfo(bot, player):
     eff = get_data_for_row(rows[2])
     res.append(non_decimal.sub("", eff.strip()))
 
-    res.append(", WN7: ")
-    wn7 = get_data_for_row(rows[3])
-    res.append(non_decimal.sub("", wn7.strip()))
+    res.append(", WN8: ")
+    wn8 = get_data_for_row(rows[4])
+    res.append(non_decimal.sub("", wn8.strip()))
     
     str = "".join(res)
     return str
